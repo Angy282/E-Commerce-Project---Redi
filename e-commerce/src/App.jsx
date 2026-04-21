@@ -9,16 +9,20 @@ function App() {
       const res = await fetch("https://dummyjson.com/products");
       const data = await res.json();
       setProducts(data.products);
-
     }
 
     fetchProducts();
   }, []);
 
   return (
-    <div className="min-h-screen p-6">
-      <h1 className="text-3xl font-bold text-center mb-8">My Very Random Store</h1>
-      <ProductList products={products} />
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-8">
+          Welcome to my very random
+        </h1>
+
+        <ProductList products={products} />
+      </div>
     </div>
   );
 }
