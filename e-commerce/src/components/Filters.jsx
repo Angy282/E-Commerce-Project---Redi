@@ -1,5 +1,3 @@
-
-
 function Filters({ search, setSearch, category, setCategory }) {
   return (
     <div className="flex gap-4 mb-6">
