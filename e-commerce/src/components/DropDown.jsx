@@ -15,16 +15,30 @@ const DropDown = () => {
   );
 
   return (
-    <div className="bg-white text-black p-4 w-80 shadow-lg rounded-lg">
+    <div className="bg-grey-600 text-white p-4 w-80 shadow-lg rounded-lg">
+      <div className="text-xl font-bold text-white">
+        Shopping cart
+      </div>
       {cart.map((item) => (
         <div key={item.product.id} className="mb-4 border-b pb-2">
+          <img src={item.product.img} alt="" />
           <h3 className="font-semibold">{item.product.title}</h3>
           <p>${item.product.price}</p>
 
           <div className="flex items-center gap-2 mt-2">
-            <button onClick={() => decreaseQuantity(item.product.id)}>-</button>
+            <button
+              className="px-2 border rounded"
+              onClick={() => decreaseQuantity(item.product.id)}
+            >
+              -
+            </button>
             <span>{item.quantity}</span>
-            <button onClick={() => increaseQuantity(item.product.id)}>+</button>
+            <button
+              className="px-2 border rounded"
+              onClick={() => increaseQuantity(item.product.id)}
+            >
+              +
+            </button>
           </div>
           <button
             onClick={() => removeFromCart(item.product.id)}

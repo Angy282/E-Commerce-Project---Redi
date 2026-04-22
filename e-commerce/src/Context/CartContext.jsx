@@ -1,11 +1,31 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 //  creating context
 const CartContext = createContext();
 
 // provider
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    try {
+      const savedCart = localStorage.getItem("cart");
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error("Error parsing cart:", error);
+      return [];
+    }
+  });
+
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    console.log("Saving cart:", cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // add to cart - prev = the latest state
   const addToCart = (product) => {
